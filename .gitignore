@@ -101,3 +101,5 @@ dist
 .dynamodb/
 .tern-port
 .env
+build/
+client/node_modules
