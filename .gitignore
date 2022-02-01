@@ -101,3 +101,6 @@ dist
 .dynamodb/
 .tern-port
 .env
+build/
+client/node_modules
+client/package-lock.json
