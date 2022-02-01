@@ -103,3 +103,4 @@ dist
 .env
 build/
 client/node_modules
+package-lock.json
