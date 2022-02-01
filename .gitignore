@@ -104,3 +104,11 @@ dist
 build/
 client/node_modules
 client/package-lock.json
+
+# Vim files
+*.~
+*.js~
+*.un~
+*.json~
+.gitignore~
+
