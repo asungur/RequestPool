@@ -12,9 +12,17 @@ const deleteRequest = async (bin_id, request_id) => {
     return response;
 }
 
+//generate bin
+const generateBin = async () => {
+    return 'testId';
+    // const response = await axios.get(baseUrl);
+    // return response;
+}
+
 const requestServices = {
     getRequests,
-    deleteRequest
+    deleteRequest,
+    generateBin
 };
 
 export default requestServices;

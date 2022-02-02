@@ -1,18 +1,13 @@
-import React from "react";
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import requestServices from "../services/bin";
+import requestServices from '../services/bin';
 
 const Home = () => {
-
   const navigate = useNavigate();
 
   const navigateToBin = () => {
-    const binId = generateBin();
-    navigate(`/${binId}`);
-  }
-
-  const generateBin = () => {
-    return 'testID';
+    requestServices.generateBin()
+      .then((binId) => navigate(`/${binId}`));
   }
 
   return (
@@ -22,4 +17,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home;
