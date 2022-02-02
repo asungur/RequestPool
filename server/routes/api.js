@@ -1,37 +1,25 @@
-const apiRouter = require('express').Router();
-const postgres = require('../db/postgres');
+// const apiRouter = require('express').Router();
+const express = require('express');
+const router = express.Router();
+const binsController = require('../controllers/binsController');
+const requestsController = require('../controllers/requestsController');
+
 
 // show requests to a bin
-apiRouter.get('/:hash', (request, response) => {
-
-  // retrieve hash string from URL
-  const hash = request.params.hash;
-
-  // query posgres
-  postgres.query('SELECT * FROM test WHERE hash = $1', [hash], (error, results) => {
-    if (error) {
-      throw error;
-    }
-
-    // send JSON to the frontend
-    response.status(200).json(results.rows);
-  });
-});
-
+router.get('/bins/:hash', binsController.getBin);
 
 // create a new bin
-apiRouter.post('/', (request, response) => {
-  // get current date & time
-  const currentDate = new Date().toLocaleString();
+router.post('/bins', binsController.createBin);
 
-  // call hash function
-  // check postgres for string
-  postgres.query('SELECT * FROM test WHERE hash = $1', [hash], (error, results) => {
-    if (error) {
-      throw error;
-    }
+// temporary, will not be used by the API
+router.get('/', (request, response) => {
 
-  });
+  // TODO serve frontend
+  response.send('Hello');
 });
 
-module.exports = apiRouter;
+// create new record of a request
+router.post('/requests', requestsController.createRequest);
+
+
+module.exports = router;

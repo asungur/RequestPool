@@ -1,22 +1,10 @@
-const requestRouter = require('express').Router()
+// const Request = require('../models/request');
 const postgres = require('../db/postgres');
 
-
-// home page
-requestRouter.get('/', (request, response) => {
-
-  // TODO serve frontend
-  response.send('Hello');
-});
-
-
-// add a request to the databases
-requestRouter.post('/r/:hash', (request, response) => {
-
-  // retrieve hash string from URL
-  const hash = request.params.hash;
-
-  // query posgres for all entries
+const createRequest = (req, res, next) => {
+  // retrieve hash string from json body
+  const hash = request.body.hash;
+  // query posgres for all entries (move this to a model)
   postgres.query('SELECT * FROM test WHERE hash = $1', [hash], (error, results) => {
     if (error) {
       throw error;
@@ -34,7 +22,6 @@ requestRouter.post('/r/:hash', (request, response) => {
       }
     });
   });
+}
 
-});
-
-module.exports = requestRouter;
+exports.createRequest = createRequest;
