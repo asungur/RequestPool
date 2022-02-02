@@ -104,3 +104,15 @@ dist
 build/
 client/node_modules
 client/package-lock.json
+
+# package-lock.json
+package-lock.json
+
+# Vim files
+*.swp
+*.js~
+*.un~
+*.json~
+.gitignore~
+.env~
+
