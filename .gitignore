@@ -114,4 +114,5 @@ package-lock.json
 *.un~
 *.json~
 .gitignore~
+.env~
 
