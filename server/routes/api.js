@@ -18,4 +18,20 @@ apiRouter.get('/:hash', (request, response) => {
   });
 });
 
+
+// create a new bin
+apiRouter.post('/', (request, response) => {
+  // get current date & time
+  const currentDate = new Date().toLocaleString();
+
+  // call hash function
+  // check postgres for string
+  postgres.query('SELECT * FROM test WHERE hash = $1', [hash], (error, results) => {
+    if (error) {
+      throw error;
+    }
+
+  });
+});
+
 module.exports = apiRouter;
