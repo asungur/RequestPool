@@ -12,9 +12,9 @@ const Bin = () => {
   // }, []);
 
   return (
-    <div>
+    <div style={{textAlign: 'center'}}>
       <h2>Requests</h2>
-      <h3>{params.id}</h3>
+      <h3 style={{color: 'green'}}>{params.id}</h3>
       {requests.map(request => 
         <div className='request' key={request.id} style={{marginTop: '100px'}}>
           <Request request={request} />
