@@ -1,12 +1,12 @@
-const express = require('express');
+const router = require('express').Router();
 
-const router = express.Router();
+router.get('/', (request, response) => {
+  response.send('Hello');
+});
 
-// const binsController = require('../controllers/binsController');
-
-// router.get('/bins', binsController.getBins);
-// router.post('/bins', validateBin?, binsController.createBin);
-// router.get('/bins/:id', binsController.getBin);
-
+router.get('/r/:hash', (request, response) => {
+  const hash = request.params.hash;
+  response.send(`${hash}`);
+});
 
 module.exports = router;
