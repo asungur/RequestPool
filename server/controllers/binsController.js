@@ -32,14 +32,11 @@ const createBin = (req, res, next) => {
 
   // (move this to a model and use promises here)
   // postgres timestamps are in seconds while js are in ms - divide by 1000.0 so there's no data loss
-  postgres.query(`INSERT into bins (id, created_at, update_at)
-              VALUES ('${hash}', to_timestamp(${createTime} / 1000.0),
-              to_timestamp(${updateTime} / 1000.0));`,
-  (error, results) => {
+  postgres.query('INSERT into bins (id, created_at, update_at) VALUES ($1, to_timestamp($2 / 1000.0), to_timestamp($3 / 1000.0))', [hash, createTime, updateTime], (error, results) => {
     if (error) {
       throw error
     }
-    res.status(201).send(`Hash successfully generated: ${hash}`)
+    res.status(201).json({ hash });
   })
 }
 
