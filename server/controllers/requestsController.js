@@ -32,5 +32,21 @@ const testMongo = async (req, res, next) => {
   return res.status(200).json({ requestId });
 }
 
+const testMongo = (req, res, next) => {
+  const request = new Request({
+    content: 'this is a test',
+  });
+
+  request.save().then(result => {
+    console.log('test saved');
+  });
+
+  Request.find({}).then(result => {
+    result.forEach(request => {
+      console.log(request.toJSON());
+    });
+  });
+}
+
 exports.createRequest = createRequest;
 exports.testMongo = testMongo;

@@ -12,7 +12,7 @@ mongoose.connect(config.MONGODB_URI)
   })
 
 const requestSchema = new mongoose.Schema({
-  content: {}
+  content: String
 });
 
 requestSchema.set('toJSON', {
