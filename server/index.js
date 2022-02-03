@@ -18,7 +18,6 @@ app.use((_, res, next) => {
   next();
 });
 
-app.use(express.json());
 app.use('/', routes);
 
 app.listen(config.PORT, () => {
