@@ -1,27 +1,36 @@
-// const Request = require('../models/request');
-const postgres = require('../db/postgres');
+const createRequest = async (req, res, next) => {
+  const hash = req.body.hash;
 
-const createRequest = (req, res, next) => {
-  // retrieve hash string from json body
-  const hash = request.body.hash;
-  // query posgres for all entries (move this to a model)
-  postgres.query('SELECT * FROM test WHERE hash = $1', [hash], (error, results) => {
-    if (error) {
-      throw error;
-    }
+  let bin = await res.locals.pgStore.loadBin(hash);
 
-    // if hash isn't in database, return 404
-    if (results.length === 0) {
-      response.status(404);
-    }
+  if (!bin) {
+    res.status(404).end()
+  }
 
-    // if hash is in database, create a record in the database
-    postgres.query('', [hash], (error, results) => {
-      if (error) {
-        throw error;
-      }
-    });
-  });
+  // create MongoDB data
+  const content = {
+    url: req.url,
+    method: req.method,
+    body: req.body,
+    headers: req.headers
+  };
+  let requestId = await res.locals.mongoStore.createRequest({ content })
+
+  if (requestId) {
+    res.status(201).json({ requestId });
+  }
+}
+
+const testMongo = async (req, res, next) => {
+  let requestId = await res.locals.mongoStore.createRequest({ content: 'this is a test' });
+  console.log('mongo test connection returns:', requestId);
+  if (!requestId) {
+    console.log("something went wrong");
+  } else {
+    console.log("test saved");
+  }
+  return res.status(200).json({ requestId });
 }
 
 exports.createRequest = createRequest;
+exports.testMongo = testMongo;

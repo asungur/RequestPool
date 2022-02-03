@@ -12,14 +12,9 @@ router.get('/bins/:hash', binsController.getBin);
 router.post('/bins', binsController.createBin);
 
 // temporary, will not be used by the API
-router.get('/', (request, response) => {
-
-  // TODO serve frontend
-  response.send('Hello');
-});
+router.get('/', requestsController.testMongo);
 
 // create new record of a request
 router.post('/requests', requestsController.createRequest);
-
 
 module.exports = router;
