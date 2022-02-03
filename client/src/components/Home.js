@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import requestServices from '../services/bin';
+import binServices from '../services/bin';
 
 const Home = () => {
   const navigate = useNavigate();
 
   const navigateToBin = () => {
-    requestServices.generateBin()
+    binServices.generateBin()
       .then((binId) => navigate(`/${binId}`));
   }
 

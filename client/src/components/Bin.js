@@ -4,12 +4,18 @@ import Request from './Request';
 import { useParams } from 'react-router-dom';
 
 const Bin = () => {
-  const [requests, setRequests] = useState([{id: 5, request_data: 'test data'}, {id: 6, request_data: 'test data2'}]);
+  const [requests, setRequests] = useState([]);
   const params = useParams();
-  // useEffect(() => {
-  //   requestServices.getRequests(params.binId)
-  //     .then(data => setRequests(data))
-  // }, []);
+  const binFound = true;
+  useEffect(() => {
+    requestServices.getRequests(params.id)
+      .then(data => setRequests(data))
+  }, []);
+
+  const onDelete = async (requestId) => {
+    await requestServices.deleteRequest(requestId);
+    setRequests(requests.filter(request => request.id !== requestId));
+  }
 
   return (
     <div style={{textAlign: 'center'}}>
@@ -17,7 +23,7 @@ const Bin = () => {
       <h3 style={{color: 'green'}}>{params.id}</h3>
       {requests.map(request => 
         <div className='request' key={request.id} style={{marginTop: '100px'}}>
-          <Request request={request} />
+          <Request request={request} deleteRequest={onDelete} />
         </div>
       )}
     </div>
