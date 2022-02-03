@@ -11,7 +11,7 @@ module.exports = class MongoPersistence {
     let result = await newRequest.save();
 
     if (!result._id) {
-      console.log("Error: content wasn't save!");
+      console.log("Error: content wasn't saved!");
     }
     return result._id.toString();
   }

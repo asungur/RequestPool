@@ -15,7 +15,7 @@ const createBin = async (req, res, next) => {
   let { hash, createTime, updateTime } = hashFunc();
 
   let bin = await res.locals.pgStore.loadBin(hash);
-  if (!bin) {
+  if (!!bin) {
     console.log("Record already exists");
     res.status(409).end();
   }

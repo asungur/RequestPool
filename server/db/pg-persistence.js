@@ -6,14 +6,14 @@ module.exports = class PgPersistence {
   }
 
   async loadBin(hash) {
-    const LOAD_BIN = "SELECT * FROM bins WHERE id = ($1)";
+    const LOAD_BIN = "SELECT * FROM bins WHERE hash_id = ($1)";
     let result = await dbQuery(LOAD_BIN, hash);
     return result.rows[0];
   }
 
   async createBin(hash, createTime, updateTime) {
     const CREATE_BIN = "INSERT INTO bins" +
-                       "  (id, created_at, update_at)" +
+                       "  (hash_id, created_at, update_at)" +
                        "VALUES ($1, to_timestamp($2 / 1000.0), to_timestamp($3 / 1000.0))"
 
     let result = await dbQuery(CREATE_BIN, hash, createTime, updateTime);
