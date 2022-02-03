@@ -1,6 +1,7 @@
 -- TODO: add a primary key that isn't the hash value
 CREATE TABLE bins(
-  id char(8) PRIMARY KEY,
+  id serial PRIMARY KEY,
+  hash_id char(8),
   created_at timestamp,
   update_at timestamp
 );
@@ -17,7 +18,7 @@ CREATE TABLE requests (
   bin_id char(8),
   mongo_id char(24),
   FOREIGN KEY (bin_id)
-    REFERENCES bins (id)
+    REFERENCES bins (hash_id)
 );
 
 INSERT INTO requests (bin_id, mongo_id)

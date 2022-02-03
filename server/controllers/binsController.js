@@ -1,10 +1,10 @@
 // const Bin = require('../models/bin');
-const postgres = require('../db/postgres');
+const postgres = require('../models/bin');
 
 const getBin = (req, res, next) => {
   const hash = req.params.hash;
   // query posgres (move this to a model and use promises here)
-  postgres.query('SELECT * FROM bins WHERE id = $1', [hash], (error, results) => {
+  postgres.query('SELECT * FROM bins WHERE hash_id = $1', [hash], (error, results) => {
     if (error) {
       throw error;
     }
@@ -14,7 +14,6 @@ const getBin = (req, res, next) => {
 }
 
 const createBin = (req, res, next) => {
-  // call hash function based on current time
   const timeNow = new Date()
   const createTime = timeNow.getTime()
 
@@ -24,15 +23,18 @@ const createBin = (req, res, next) => {
   const updateTime = timeNow.setHours(timeNow.getHours() + 48)
 
   // check postgres for string (move this to a model and use promises here)
-  postgres.query('SELECT * FROM bins WHERE id = $1', [hash], (error, results) => {
+  postgres.query('SELECT * FROM bins WHERE hash_id = $1', [hash], (error, results) => {
     if (error) {
       throw error;
+    }
+
+    if (results.rows.length != 0) {
+      res.status(404)
     }
   });
 
   // (move this to a model and use promises here)
-  // postgres timestamps are in seconds while js are in ms - divide by 1000.0 so there's no data loss
-  postgres.query('INSERT into bins (id, created_at, update_at) VALUES ($1, to_timestamp($2 / 1000.0), to_timestamp($3 / 1000.0))', [hash, createTime, updateTime], (error, results) => {
+  postgres.query('INSERT into bins (hash_id, created_at, update_at) VALUES ($1, to_timestamp($2 / 1000.0), to_timestamp($3 / 1000.0))', [hash, createTime, updateTime], (error, results) => {
     if (error) {
       throw error
     }

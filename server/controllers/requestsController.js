@@ -5,8 +5,8 @@ const Request = require('../models/request');
 const createRequest = (req, res, next) => {
   // retrieve hash string from json body
   const hash = req.body.hash;
-  // query posgres for all entries (move this to a model)
-  postgres.query('SELECT * FROM test WHERE hash = $1', [hash], (error, results) => {
+  // query postgres for all entries (move this to a model)
+  postgres.query('SELECT * FROM bins WHERE hash_id = $1', [hash], (error, results) => {
     if (error) {
       throw error;
     }
