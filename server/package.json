@@ -7,14 +7,20 @@
     "lib": "lib"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Dummy Heads",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^15.0.0",
     "express": "^4.17.2",
+    "express-async-errors": "^3.1.1",
     "mongoose": "^6.1.10",
+    "morgan": "^1.10.0",
     "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
