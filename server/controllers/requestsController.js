@@ -4,7 +4,7 @@ const Request = require('../models/request');
 
 const createRequest = (req, res, next) => {
   // retrieve hash string from json body
-  const hash = request.body.hash;
+  const hash = req.body.hash;
   // query posgres for all entries (move this to a model)
   postgres.query('SELECT * FROM test WHERE hash = $1', [hash], (error, results) => {
     if (error) {
@@ -16,16 +16,36 @@ const createRequest = (req, res, next) => {
       response.status(404);
     }
 
-    // if hash is in database, create a record in the database
-    postgres.query('', [hash], (error, results) => {
-      if (error) {
-        throw error;
-      }
+    // create MongoDB data
+    const content = { 
+      url: req.url,
+      method: req.method,
+      body: req.body, 
+      headers: req.headers 
+    };
+
+    const request = new Request({ content });
+
+    // send to MongoDB
+    request.save().then(result => {
+      console.log('test saved');
+      // get ID of mongo record
+      const mongoID = result._id.toString();
+
+      // add to requests table in postgres
+      postgres.query('INSERT INTO requests (bin_id, mongo_id) VALUES ($1, $2)', [hash, mongoID], (error, results) => {
+        if (error) {
+          throw error;
+        }
+
+        res.sendStatus(200);
+      });
     });
   });
 }
 
 const testMongo = (req, res, next) => {
+  /*
   const request = new Request({
     content: 'this is a test',
   });
@@ -34,11 +54,10 @@ const testMongo = (req, res, next) => {
     console.log('test saved');
   });
 
-  Request.find({}).then(result => {
-    result.forEach(request => {
-      console.log(request.toJSON());
-    });
+  Request.findById('61fb44b6448c5276b4a504b9').then(result => {
+    console.log(result.toJSON());
   });
+  */
 }
 
 exports.createRequest = createRequest;
