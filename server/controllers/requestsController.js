@@ -33,6 +33,7 @@ const testMongo = async (req, res, next) => {
 }
 
 const testMongo = (req, res, next) => {
+  /*
   const request = new Request({
     content: 'this is a test',
   });
@@ -41,11 +42,10 @@ const testMongo = (req, res, next) => {
     console.log('test saved');
   });
 
-  Request.find({}).then(result => {
-    result.forEach(request => {
-      console.log(request.toJSON());
-    });
+  Request.findById('61fb44b6448c5276b4a504b9').then(result => {
+    console.log(result.toJSON());
   });
+  */
 }
 
 exports.createRequest = createRequest;
