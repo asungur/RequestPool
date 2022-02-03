@@ -13,6 +13,7 @@ router.post('/bins', binsController.createBin);
 
 // temporary, will not be used by the API
 router.get('/', (request, response) => {
+  requestsController.testMongo();
 
   // TODO serve frontend
   response.send('Hello');

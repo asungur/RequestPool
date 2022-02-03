@@ -1,5 +1,6 @@
-// const Request = require('../models/request');
 const postgres = require('../db/postgres');
+const mongoose = require('mongoose');
+const Request = require('../models/request');
 
 const createRequest = (req, res, next) => {
   // retrieve hash string from json body
@@ -24,4 +25,21 @@ const createRequest = (req, res, next) => {
   });
 }
 
+const testMongo = (req, res, next) => {
+  const request = new Request({
+    content: 'this is a test',
+  });
+
+  request.save().then(result => {
+    console.log('test saved');
+  });
+
+  Request.find({}).then(result => {
+    result.forEach(request => {
+      console.log(request.toJSON());
+    });
+  });
+}
+
 exports.createRequest = createRequest;
+exports.testMongo = testMongo;
