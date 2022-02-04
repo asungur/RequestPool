@@ -22,10 +22,10 @@
     "pg": "^8.7.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.0",
-    "@babel/preset-env": "^7.16.11",
-    "babel-jest": "^27.4.6",
     "jest": "^27.4.7",
     "nodemon": "^2.0.15"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
