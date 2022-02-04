@@ -2,7 +2,8 @@ const hashFunc = require('../lib/hash-generator.js');
 
 describe('hashFunc', () => {
   test('returns two different hash values on sequential calls', () => {
-    expect(hashFunc().hash).not.toBe(hashFunc().hash);
+    const [ hash1, hash2 ] = [ hashFunc().hash, hashFunc().hash ];
+    expect(hash1).not.toBe(hash2);
   });
 
   test('returns a hash that is a string of 8 characters', () => {
