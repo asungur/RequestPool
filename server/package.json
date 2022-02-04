@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "jest --verbose --detectOpenHandles"
+    "test": "jest --silent" 
   },
   "author": "Dummy Heads",
   "license": "MIT",
@@ -24,8 +24,5 @@
   "devDependencies": {
     "jest": "^27.4.7",
     "nodemon": "^2.0.15"
-  },
-  "jest": {
-    "testEnvironment": "node"
   }
 }
