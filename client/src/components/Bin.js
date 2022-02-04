@@ -6,11 +6,11 @@ import { useParams } from 'react-router-dom';
 const Bin = () => {
   const [requests, setRequests] = useState([]);
   const params = useParams();
-  const binFound = true;
+  // const binFound = true;
   useEffect(() => {
     requestServices.getRequests(params.id)
       .then(data => setRequests(data))
-  }, []);
+  }, [params.id]);
 
   const onDelete = async (requestId) => {
     await requestServices.deleteRequest(requestId);
