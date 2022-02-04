@@ -1,14 +1,16 @@
 const createRequest = async (req, res, next) => {
-  const hash = req.body.hash;
+  const hash = req.params.hash;
 
   let bin = await res.locals.pgStore.loadBin(hash);
 
   if (!bin) {
     res.status(404).end()
+    return
   }
 
   // create MongoDB data
   const content = {
+    hash: hash, // added hash so I can grab all requests that have this hash value
     url: req.url,
     method: req.method,
     body: req.body,
