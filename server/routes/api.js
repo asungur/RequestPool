@@ -15,6 +15,9 @@ router.post('/bins', binsController.createBin);
 router.get('/', requestsController.testMongo);
 
 // create new record of a request
-router.post('/requests', requestsController.createRequest);
+router.get('/requests/:hash', requestsController.createRequest);
+router.post('/requests/:hash', requestsController.createRequest);
+router.put('/requests/:hash', requestsController.createRequest);
+router.delete('/requests/:hash', requestsController.createRequest);
 
 module.exports = router;

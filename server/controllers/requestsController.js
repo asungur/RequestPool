@@ -1,14 +1,16 @@
 const createRequest = async (req, res, next) => {
-  const hash = req.body.hash;
+  const hash = req.params.hash;
 
   let bin = await res.locals.pgStore.loadBin(hash);
 
   if (!bin) {
     res.status(404).end()
+    return
   }
 
   // create MongoDB data
   const content = {
+    hash: hash, // added hash so I can grab all requests that have this hash value
     url: req.url,
     method: req.method,
     body: req.body,
@@ -30,22 +32,6 @@ const testMongo = async (req, res, next) => {
     console.log("test saved");
   }
   return res.status(200).json({ requestId });
-}
-
-const testMongo = (req, res, next) => {
-  /*
-  const request = new Request({
-    content: 'this is a test',
-  });
-
-  request.save().then(result => {
-    console.log('test saved');
-  });
-
-  Request.findById('61fb44b6448c5276b4a504b9').then(result => {
-    console.log(result.toJSON());
-  });
-  */
 }
 
 exports.createRequest = createRequest;

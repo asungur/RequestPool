@@ -5,7 +5,8 @@ const getBin = async (req, res, next) => {
 
   let bin = await res.locals.pgStore.loadBin(hash);
   if (!!bin) {
-    res.status(200).json(bin)
+    let requests = await res.locals.mongoStore.getRequests(hash)
+    res.status(200).json(requests)
   } else {
     res.status(404).end()
   }
