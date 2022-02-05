@@ -15,7 +15,7 @@ This repo is connected to:
 
 ## ERD
 
-(![image](https://user-images.githubusercontent.com/14999320/152019964-28a79517-bcc6-488c-9a61-aecd6f9a13c0.png))
+![image](https://user-images.githubusercontent.com/14999320/152019964-28a79517-bcc6-488c-9a61-aecd6f9a13c0.png)
 
 ## Architecture
 
