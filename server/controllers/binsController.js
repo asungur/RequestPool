@@ -22,7 +22,7 @@ const createBin = async (req, res, next) => {
   }
 
   let result = res.locals.pgStore.createBin(hash, createTime, updateTime);
-  if (!result) {
+  if (result) {
     res.status(201).json({ hash });
   }
 }

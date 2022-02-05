@@ -1,26 +1,17 @@
-import { useState, useEffect } from 'react';
-import requestServices from '../services/bin';
 import Request from './Request';
 import { useParams } from 'react-router-dom';
 
-const Bin = () => {
-  const [requests, setRequests] = useState([]);
-  const params = useParams();
-  // const binFound = true;
-  useEffect(() => {
-    requestServices.getRequests(params.id)
-      .then(data => setRequests(data))
-  }, [params.id]);
+const Bin = ({ binId, requests, onDelete, handleIdChange }) => {
+  const { id } = useParams();
 
-  const onDelete = async (requestId) => {
-    await requestServices.deleteRequest(requestId);
-    setRequests(requests.filter(request => request.id !== requestId));
+  if (id !== binId) {
+    handleIdChange(id);
   }
 
   return (
     <div style={{textAlign: 'center'}}>
       <h2>Requests</h2>
-      <h3 style={{color: 'green'}}>{params.id}</h3>
+      <h3 style={{color: 'green'}}>Bin URL: {binId}</h3>
       {requests.map(request => 
         <div className='request' key={request.id} style={{marginTop: '100px'}}>
           <Request request={request} deleteRequest={onDelete} />
