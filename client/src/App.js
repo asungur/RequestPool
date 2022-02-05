@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Bin from './components/Bin';
 import Home from './components/Home';
+import Header from './components/Header';
 import binService from './services/bin';
 
 const App = () => {
@@ -20,11 +21,15 @@ const App = () => {
       .then(_ => setRequests(requests.filter(request => request.id !== requestId)));
   }
 
+  const handlePostBin = (id) => {
+    binService.generateRequest(id);
+  }
+
   const handleGenerateBin = () => {
     binService.generateBin()
       .then(createdBin => {
         setBinId(createdBin.hash);
-        navigate(`/${createdBin.hash}`);
+        navigate(`/${createdBin.hash}?inspect=true`);
       })
   }
 
@@ -38,9 +43,7 @@ const App = () => {
 
   return (
     <div>
-      <header className="App" style={{textAlign: 'center', marginBottom: '100px'}}>
-        <h1>Request Pool</h1>
-      </header>
+      <Header/>
       <Routes>
         <Route path='/:id' element={
           <Bin
@@ -48,6 +51,7 @@ const App = () => {
             requests={requests}
             handleDelete={handleDeleteRequest}
             handleIdChange={parseUrlId}
+            handleNoInspect={handlePostBin}
           />
         }/>
         <Route path='/' element={

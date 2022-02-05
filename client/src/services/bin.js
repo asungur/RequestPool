@@ -24,10 +24,19 @@ const generateBin = async () => {
   return response.data;
 }
 
+// create request
+const generateRequest = async (bin_id) => {
+  const url = `/requests/${bin_id}`
+  const response = await axios.get(url)
+    .catch(e => console.log(e));
+  return response
+}
+
 const binServices = {
     getRequests,
     deleteRequest,
-    generateBin
+    generateBin,
+    generateRequest
 };
 
 export default binServices;
