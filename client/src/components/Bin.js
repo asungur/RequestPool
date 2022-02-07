@@ -1,7 +1,7 @@
 import Request from './Request';
 import { useParams, useSearchParams } from 'react-router-dom';
 
-const Bin = ({ binId, requests, onDelete, handleIdChange, handleNoInspect }) => {
+const Bin = ({ binId, requests, handleDelete, handleIdChange, handleNoInspect }) => {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -31,7 +31,7 @@ const Bin = ({ binId, requests, onDelete, handleIdChange, handleNoInspect }) => 
         <p className="text-3xl text-black">Requests</p>
       </div>
       {requests.map(request =>
-        <Request key={request.id} request={request} deleteRequest={onDelete} />
+        <Request key={request.id} request={request} deleteRequest={handleDelete} />
       )}
     </div>
   );

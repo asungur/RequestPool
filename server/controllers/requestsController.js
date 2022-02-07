@@ -23,6 +23,15 @@ const createRequest = async (req, res, next) => {
   }
 }
 
+const deleteRequest = async (req, res, next) => {
+  const request_id = req.params.request_id;
+
+  let deleted = await res.locals.mongoStore.deleteRequest(request_id)
+
+  console.log('Deleted the following entry: ', deleted)
+  return res.status(204).end();
+}
+
 const testMongo = async (req, res, next) => {
   let requestId = await res.locals.mongoStore.createRequest({ content: 'this is a test' });
   console.log('mongo test connection returns:', requestId);
@@ -35,4 +44,5 @@ const testMongo = async (req, res, next) => {
 }
 
 exports.createRequest = createRequest;
+exports.deleteRequest = deleteRequest;
 exports.testMongo = testMongo;
