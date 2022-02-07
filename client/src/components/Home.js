@@ -1,18 +1,18 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import requestServices from '../services/bin';
 
-const Home = () => {
-  const navigate = useNavigate();
-
-  const navigateToBin = () => {
-    requestServices.generateBin()
-      .then((binId) => navigate(`/${binId}`));
-  }
+const Home = ({ handleGenerate }) => {
 
   return (
-    <div style={{textAlign: 'center'}}>
-      <button onClick={navigateToBin}>Generate Bin</button>
+    <div className="flex flex-col items-center">
+      <div className="flex-auto py-16 max-w-screen-lg">
+        <p className="text-2xl text-black">Welcome to Request Pool app, please generate a pool to start</p>
+      </div>
+      <button
+        className="rounded-md bg-blue3 text-white py-4 px-12 text-xl hover:bg-blue1"
+        onClick={() => handleGenerate()}
+      >
+        Generate Bin
+      </button>
     </div>
   )
 }
