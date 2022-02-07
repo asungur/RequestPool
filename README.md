@@ -2,14 +2,14 @@
 
 RequestBin like application
 
-This repo is connected to:
-[https://requestbin.net/r/7cznikdd?inspect](https://requestbin.net/r/7cznikdd?inspect) 
-
 ## Todos
-- [ ]  Add missing actions to controllers (Reilly/Adam?)
-- [ ]  Add missing queries to persistence modules (Reilly/Adam?)
+- [ ]  Add delete functionality to back-end (Reilly)
 - [ ]  Write some back-end tests (Adam)
+- [ ]  Add front-end tests (Pavlo)
 - [ ]  Deploy to VPS (Alican)
+-----
+- [ ]  Go app that cleans up the DB after 48 days (Alican)
+- [ ]  WebSockets connection (Pavlo)
 
 ## ERD
 
