@@ -10,7 +10,6 @@ This repo is connected to:
 - [ ]  Add missing queries to persistence modules (Reilly/Adam?)
 - [ ]  Write some back-end tests (Adam)
 - [ ]  Deploy to VPS (Alican)
-- [ ]  Build delete request functionality
 
 ## ERD
 
