@@ -7,7 +7,7 @@ module.exports = class MongoPersistence {
 
   // may want to grab by the the request's object id in mongo instead of the hash_id
   async getRequests(hash_id) {
-    const results = await Request.find({ 'content.hash': hash_id })
+    const results = await Request.find({ 'content.hash': hash_id });
 
     if (results.length === 0) {
       console.log("No requests have been made to this location")
@@ -24,5 +24,12 @@ module.exports = class MongoPersistence {
       console.log("Error: content wasn't saved!");
     }
     return result._id.toString();
+  }
+
+  async deleteRequest(request_id) {
+    const toDelete = await Request.find({ '_id': request_id });
+    await Request.deleteOne({ '_id': request_id });
+
+    return toDelete;
   }
 }
