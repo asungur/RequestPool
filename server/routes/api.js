@@ -15,7 +15,7 @@ router.post('/bins', binsController.createBin);
 router.get('/', requestsController.testMongo);
 
 // delete a request from a bin
-router.delete('/bins/:hash_id/:request_id', requestsController.deleteRequest)
+router.delete('/bins/:request_id', requestsController.deleteRequest)
 
 // create new record of a request
 router.get('/requests/:hash', requestsController.createRequest);

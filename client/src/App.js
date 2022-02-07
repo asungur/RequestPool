@@ -49,7 +49,7 @@ const App = () => {
           <Bin
             binId={binId}
             requests={requests}
-            handleDelete={handleDeleteRequest}
+            onDelete={handleDeleteRequest}
             handleIdChange={parseUrlId}
             handleNoInspect={handlePostBin}
           />
