@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import Request from './Request';
 import { useParams, useSearchParams } from 'react-router-dom';
 
@@ -5,13 +6,16 @@ const Bin = ({ binId, requests, onDelete, handleIdChange, handleNoInspect }) => 
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  if (id !== binId) {
-    handleIdChange(id);
-  }
-  if (!searchParams.get("inspect")) {
-    handleNoInspect(id);
-    setSearchParams({"inspect": true});
-  }
+  useEffect(() => {
+    if (id !== binId) {
+      handleIdChange(id);
+    }
+    if (!searchParams.get("inspect")) {
+      handleNoInspect(id);
+      setSearchParams({"inspect": true});
+    }
+  });
+
 
   return (
     <div className="flex flex-col items-center">
@@ -30,9 +34,11 @@ const Bin = ({ binId, requests, onDelete, handleIdChange, handleNoInspect }) => 
       <div className="flex-auto pt-8 pb-2 max-w-screen-lg">
         <p className="text-3xl text-black">Requests</p>
       </div>
-      {requests.map(request =>
-        <Request key={request.id} request={request} deleteRequest={onDelete} />
-      )}
+      <div className="flex-auto max-w-screen-lg">
+        {requests.map(request =>
+          <Request key={request.id} request={request} deleteRequest={onDelete} />
+        )}
+      </div>
     </div>
   );
 }
