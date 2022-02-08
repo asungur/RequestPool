@@ -8,6 +8,7 @@ const middleware = require('./utils/middleware');
 const PgPersistence = require('./db/pg-persistence');
 const MongoPersistence = require('./db/mongo-persistence');
 
+app.use(express.static('build'))
 app.use(express.json());
 app.use(morgan('tiny'));
 app.use(middleware.requestLogger)
