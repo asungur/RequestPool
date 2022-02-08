@@ -8,7 +8,7 @@ RequestBin like application
 - [ ]  Add front-end tests (Pavlo)
 - [ ]  Deploy to VPS (Alican)
 -----
-- [ ]  Go app that cleans up the DB after 48 days (Alican)
+- [ ]  Go app that cleans up the DB after 48 hours (Alican)
 - [ ]  WebSockets connection (Pavlo)
 
 ## ERD

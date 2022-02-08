@@ -16,9 +16,6 @@ const Request = ({ request, deleteRequest }) => {
     }
   }
 
-
-  console.log(request)
-
   return (
     <div className="flex flex-col items-center">
       <div className='py-4 px-32 w-full' key={request.id}>
