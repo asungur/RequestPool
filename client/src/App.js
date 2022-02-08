@@ -21,15 +21,11 @@ const App = () => {
       .then(_ => setRequests(requests.filter(request => request.id !== requestId)));
   }
 
-  const handlePostBin = (id) => {
-    binService.generateRequest(id);
-  }
-
   const handleGenerateBin = () => {
     binService.generateBin()
       .then(createdBin => {
         setBinId(createdBin.hash);
-        navigate(`/${createdBin.hash}?inspect=true`);
+        navigate(`/requests/${createdBin.hash}?inspect=true`);
       })
   }
 
@@ -45,13 +41,12 @@ const App = () => {
     <div>
       <Header/>
       <Routes>
-        <Route path='/:id' element={
+        <Route path='/requests/:id' element={
           <Bin
             binId={binId}
             requests={requests}
             onDelete={handleDeleteRequest}
             handleIdChange={parseUrlId}
-            handleNoInspect={handlePostBin}
           />
         }/>
         <Route path='/' element={

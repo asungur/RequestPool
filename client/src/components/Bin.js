@@ -2,17 +2,16 @@ import React, { useEffect } from 'react';
 import Request from './Request';
 import { useParams, useSearchParams } from 'react-router-dom';
 
-const Bin = ({ binId, requests, onDelete, handleIdChange, handleNoInspect }) => {
+const Bin = ({ binId, requests, onDelete, handleIdChange }) => {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const requestPoolUrl = 'http://requestpool.asungur.com';
+  const requestPoolUrl = 'http://requestpool.asungur.com/requests';
 
   useEffect(() => {
     if (id !== binId) {
       handleIdChange(id);
     }
     if (!searchParams.get("inspect")) {
-      handleNoInspect(id);
       setSearchParams({"inspect": true});
     }
   });
