@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+const { Client } = require('pg');
 const config = require('../utils/config');
 
 const CONNECTION = {
@@ -18,13 +18,13 @@ const logQuery = (statement, params) => {
 
 module.exports = {
   async dbQuery(statement, ...params) {
-    let pool = new Pool(CONNECTION);
+    let client = new Client(CONNECTION);
 
-    await pool.connect();
+    await client.connect();
     logQuery(statement, params);
-    let result = await pool.query(statement, params);
+    let result = await client.query(statement, params);
     console.log('pg query returns:', result.rows);
-    pool.end();
+    client.end();
     return result
   }
 };

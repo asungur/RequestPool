@@ -14,6 +14,9 @@ router.post('/bins', binsController.createBin);
 // temporary, will not be used by the API
 router.get('/', requestsController.testMongo);
 
+// delete a request from a bin
+router.delete('/bins/:request_id', requestsController.deleteRequest)
+
 // create new record of a request
 router.get('/requests/:hash', requestsController.createRequest);
 router.post('/requests/:hash', requestsController.createRequest);

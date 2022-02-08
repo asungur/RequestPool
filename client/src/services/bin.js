@@ -10,8 +10,8 @@ const getRequests = async (bin_id) => {
 }
 
 // delete request
-const deleteRequest = async (bin_id, request_id) => {
-  const url = `${baseUrl}/${bin_id}/${request_id}`;
+const deleteRequest = async (request_id) => {
+  const url = `${baseUrl}/${request_id}`;
   const response = await axios.delete(url)
     .catch(e => console.log(e));
   return response;
