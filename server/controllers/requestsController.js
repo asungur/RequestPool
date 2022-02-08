@@ -1,5 +1,18 @@
+const path = require('path');
+
 const createRequest = async (req, res, next) => {
   const hash = req.params.hash;
+  const inspect = req.query.inspect;
+
+  if (!!inspect) {
+    res.sendFile(path.join(__dirname, '../build/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+    res.status(201)
+    return
+  }
 
   let bin = await res.locals.pgStore.loadBin(hash);
 
@@ -8,9 +21,8 @@ const createRequest = async (req, res, next) => {
     return
   }
 
-  // create MongoDB data
   const content = {
-    hash: hash, // added hash so I can grab all requests that have this hash value
+    hash: hash,
     url: req.url,
     method: req.method,
     body: req.body,
@@ -32,17 +44,5 @@ const deleteRequest = async (req, res, next) => {
   return res.status(204).end();
 }
 
-const testMongo = async (req, res, next) => {
-  let requestId = await res.locals.mongoStore.createRequest({ content: 'this is a test' });
-  console.log('mongo test connection returns:', requestId);
-  if (!requestId) {
-    console.log("something went wrong");
-  } else {
-    console.log("test saved");
-  }
-  return res.status(200).json({ requestId });
-}
-
 exports.createRequest = createRequest;
 exports.deleteRequest = deleteRequest;
-exports.testMongo = testMongo;

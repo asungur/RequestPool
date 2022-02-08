@@ -2,16 +2,16 @@ import React, { useEffect } from 'react';
 import Request from './Request';
 import { useParams, useSearchParams } from 'react-router-dom';
 
-const Bin = ({ binId, requests, onDelete, handleIdChange, handleNoInspect }) => {
+const Bin = ({ binId, requests, onDelete, handleIdChange }) => {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+  const requestPoolUrl = 'http://requestpool.asungur.com/requests';
 
   useEffect(() => {
     if (id !== binId) {
       handleIdChange(id);
     }
     if (!searchParams.get("inspect")) {
-      handleNoInspect(id);
       setSearchParams({"inspect": true});
     }
   });
@@ -27,7 +27,7 @@ const Bin = ({ binId, requests, onDelete, handleIdChange, handleNoInspect }) => 
           className="disabled:bg-white text-2xl text-blue3 border-2 border-blue3 rounded-md px-4 py-2"
           type="text"
           disabled
-          value={`localhost:3001/${id}`}
+          value={`${requestPoolUrl}/${id}`}
         >
         </input>
       </div>
