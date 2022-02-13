@@ -6,7 +6,6 @@ RequestBin like application
 - [ ]  Write some back-end tests (Adam)
 - [ ]  Add front-end tests (Pavlo)
 - [ ]  Configure eslint
-- [ ]  Deploy to VPS (Alican)
 -----
 - [ ]  Go app that cleans up the DB after 48 hours (Alican)
 - [ ]  WebSockets connection (Pavlo)
