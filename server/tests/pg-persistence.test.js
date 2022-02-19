@@ -1,6 +1,6 @@
 const PgPersistence = require('../db/pg-persistence');
 const pgPersistenceInstance = new PgPersistence('test');
-const { poolQuery } = require('../db/postgres-query');
+const { dbQuery } = require('../db/postgres-query');
 
 describe('PgPersistence', () => {
   beforeEach(async () => {
@@ -9,7 +9,7 @@ describe('PgPersistence', () => {
                               'hash_id char(8) UNIQUE,' +
                               'created_at timestamp,' +
                               'update_at timestamp)';
-    await poolQuery(createTestTable);
+    await dbQuery(createTestTable);
     const currentTime = new Date();
     const addData = 'INSERT INTO bins' +
                       '(hash_id, created_at, update_at)' +
@@ -20,12 +20,12 @@ describe('PgPersistence', () => {
                         '(\'abcdefgh\',' +
                         `to_timestamp(${currentTime.getTime()}),` +
                         `to_timestamp(${currentTime.setHours(currentTime.getHours() + 48)}))`;
-    await poolQuery(addData);
+    await dbQuery(addData);
   });
 
   afterEach(async () => {
     const removeTable = 'DROP TABLE bins';
-    await poolQuery(removeTable);
+    await dbQuery(removeTable);
   });
 
   test('has loadBin and createBin functions', () => {

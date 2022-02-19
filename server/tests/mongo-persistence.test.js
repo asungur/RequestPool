@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const MongoPersistence = require('../db/mongo-persistence');
 const mongoPersistenceInstance = new MongoPersistence('test');
 const Request = require('../models/request');
@@ -40,7 +41,7 @@ describe('MongoPersistence', () => {
   });
 
   afterEach(async () => {
-    const result = await Request.findOneAndDelete({ 'content.hash': 'abcd1234' });
+    const result = await Request.deleteMany({ 'content.hash': 'abcd1234' });
     const result2 = await Request.deleteMany({ 'content.hash': 'xyz123cc' });
   });
 
@@ -78,4 +79,8 @@ describe('MongoPersistence', () => {
     expect(result.length).toBe(24);
     expect(retrieved.length).toBe(2);
   });
+
+  afterAll(() => {
+    mongoose.connection.close();
+  })
 });

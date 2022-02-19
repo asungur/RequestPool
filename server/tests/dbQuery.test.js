@@ -1,4 +1,4 @@
-const { dbQuery, poolQuery } = require('../db/postgres-query');
+const { dbQuery } = require('../db/postgres-query');
 
 describe('dbQuery', () => {
   beforeEach(async () => {
@@ -7,19 +7,19 @@ describe('dbQuery', () => {
                               'hash_id char(8) UNIQUE,' +
                               'created_at timestamp,' +
                               'update_at timestamp)';
-    await poolQuery(createTestTable);
+    await dbQuery(createTestTable);
     const addData = 'INSERT INTO testBins' +
                       '(hash_id, created_at, update_at)' +
                       'VALUES (' +
                         '\'kz4rmvrm\',' +
                         'to_timestamp(1643758945.618),' +
                         'to_timestamp(1643931745.618))';
-    await poolQuery(addData);
+    await dbQuery(addData);
   });
 
   afterEach(async () => {
     const removeTable = 'DROP TABLE testBins';
-    await poolQuery(removeTable);
+    await dbQuery(removeTable);
   });
 
   test('can select all rows', async () => {

@@ -17,11 +17,6 @@ const logQuery = (statement, params) => {
 }
 
 module.exports = {
-  pool,
-  poolQuery: async (text, ...params) => {
-    const result = await pool.query(text, params);
-    return result;
-  },
   async dbQuery(statement, ...params) {
     let client = new Client(CONNECTION);
 
