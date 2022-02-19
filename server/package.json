@@ -22,12 +22,9 @@
     "pg": "^8.7.1"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@babel/core": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "babel-jest": "^27.4.6",
-=======
->>>>>>> 58a481dac2937fde12a118f9aa2d8cfc8a0f49d5
     "jest": "^27.4.7",
     "nodemon": "^2.0.15"
   }
