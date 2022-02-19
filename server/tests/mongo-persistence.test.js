@@ -35,14 +35,14 @@ describe('MongoPersistence', () => {
     const newRequest1 = new Request(requestContent1);
     const newRequest2 = new Request(requestContent2);
     const newRequest3 = new Request(requestContent3);
-    const result1 = await newRequest1.save();
-    const result2 = await newRequest2.save();
-    const result3 = await newRequest3.save();
+    await newRequest1.save();
+    await newRequest2.save();
+    await newRequest3.save();
   });
 
   afterEach(async () => {
-    const result = await Request.deleteMany({ 'content.hash': 'abcd1234' });
-    const result2 = await Request.deleteMany({ 'content.hash': 'xyz123cc' });
+    await Request.deleteMany({ 'content.hash': 'abcd1234' });
+    await Request.deleteMany({ 'content.hash': 'xyz123cc' });
   });
 
   test('can retrieve a document with getRequests', async () => {

@@ -24,8 +24,7 @@ describe('PgPersistence', () => {
   });
 
   afterEach(async () => {
-    const removeTable = 'DROP TABLE bins';
-    await dbQuery(removeTable);
+    await dbQuery('DROP TABLE bins');
   });
 
   test('has loadBin and createBin functions', () => {

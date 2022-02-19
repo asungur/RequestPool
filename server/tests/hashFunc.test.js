@@ -1,10 +1,10 @@
 const hashFunc = require('../lib/hash-generator.js');
 
 describe('hashFunc', () => {
-  test('returns two different hash values on sequential calls', async () => {
+  test('returns two different hash values on sequential calls', () => {
     const hash1 = hashFunc().hash;
     let hash2;
-    await setTimeout(() => {
+    setTimeout(() => {
       hash2 = hashFunc().hash;
     }, 0)
     expect(hash1).not.toBe(hash2);
@@ -17,7 +17,7 @@ describe('hashFunc', () => {
   });
 
   test('returns the createTime and updateTime as numbers', () => {
-    const { hash, createTime, updateTime } = hashFunc();
+    const { createTime, updateTime } = hashFunc();
     expect(typeof createTime).toBe('number');
     expect(typeof updateTime).toBe('number');
   });
