@@ -3,7 +3,6 @@
 RequestBin like application
 
 ## Todos
-- [ ]  Write some back-end tests (Adam)
 - [ ]  Add front-end tests (Pavlo)
 - [ ]  Configure eslint
 -----

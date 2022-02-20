@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "NODE_ENV=test jest --silent" 
   },
   "author": "Dummy Heads",
   "license": "MIT",
@@ -21,6 +22,10 @@
     "pg": "^8.7.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^27.4.6",
+    "jest": "^27.4.7",
     "nodemon": "^2.0.15"
   }
 }
