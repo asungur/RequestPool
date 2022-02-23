@@ -13,7 +13,7 @@ mongoose.connect(config.MONGODB_URI)
 
 const requestSchema = new mongoose.Schema({
   content: {}
-});
+}, {timestamps: true});
 
 requestSchema.set('toJSON', {
   transform: (document, returnedObject) => {
