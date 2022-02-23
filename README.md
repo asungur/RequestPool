@@ -38,4 +38,3 @@ This repository is developed for deploying to a VPS server.
 
 The application is deployed to a DigitalOcean Droplet. It requires additional configuration steps which are described in "Deployment".
 The diagram shows a deployed application running from a VPS.
-
