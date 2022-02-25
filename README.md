@@ -1,4 +1,6 @@
 # Request Pool
+RequestBin like application. Users can create ephemeral bins that collect requests for 48 hours.
+This repository is developed for deploying to a VPS server.
 
 ![requestpool](https://user-images.githubusercontent.com/14999320/155365008-2abeb6d2-7772-4545-965a-8b705ea7e880.gif)
 
@@ -38,4 +40,3 @@ This repository is developed for deploying to a VPS server.
 
 The application is deployed to a DigitalOcean Droplet. It requires additional configuration steps which are described in "Deployment".
 The diagram shows a deployed application running from a VPS.
-

@@ -117,3 +117,4 @@ requests/
 *.json~
 .gitignore~
 .env~
+db_cleaner/.env
